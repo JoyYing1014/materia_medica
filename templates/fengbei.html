@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中药发明创造里程碑事件</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 2px;
+      }
+
+      nav {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      nav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 35px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .content {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 20px auto;
+        background: #333;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+      }
+
+      .content h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #4a90e2;
+        text-shadow: 0 0 10px #4a90e2;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: #4a90e2;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+      }
+
+      .timeline-item {
+        padding: 10px 30px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -12.5px;
+        background-color: #9013fe;
+        border: 4px solid #4a90e2;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .left {
+        left: 0;
+      }
+
+      .right {
+        left: 50%;
+      }
+
+      .left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid white;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent white;
+      }
+
+      .right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background-color: white;
+        position: relative;
+        border-radius: 6px;
+        color: black;
+        max-width: 500px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .timeline-content h3 {
+        margin: 0;
+        font-size: 1.5em;
+        color: #4a90e2;
+      }
+
+      .timeline-content p {
+        margin: 10px 0 0;
+        color: #555;
+      }
+
+      .timeline-content img {
+        width: 100%;
+        border-radius: 6px;
+        margin-top: 10px;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item::before {
+          left: 60px;
+          border: medium solid white;
+          border-width: 10px 10px 10px 0;
+          border-color: transparent white transparent transparent;
+        }
+
+        .left::after,
+        .right::after {
+          left: 15px;
+        }
+
+        .right {
+          left: 0%;
+        }
+      }
+      footer {
+        text-align: center;
+        padding: 10px 20px;
+        background: #4a90e2;
+        color: #fff;
+      }
+
+      @media screen and (max-width: 768px) {
+        .gallery-item {
+          width: calc(50% - 20px); /* Adjust for smaller screens */
+          margin: 10px auto; /* Center items */
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .gallery-item {
+          width: 100%; /* Full width on very small screens */
+          margin: 10px 0;
+        }
+      }
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(to bottom, #1e1e1e, #121212);
+        color: #ffffff;
+      }
+
+      header {
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 2px;
+        animation: glow 1.5s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #4a90e2,
+            0 0 40px #4a90e2, 0 0 50px #4a90e2, 0 0 60px #4a90e2,
+            0 0 70px #4a90e2;
+        }
+        to {
+          text-shadow: 0 0 20px #ffffff, 0 0 30px #9013fe, 0 0 40px #9013fe,
+            0 0 50px #9013fe, 0 0 60px #9013fe, 0 0 70px #9013fe,
+            0 0 80px #9013fe;
+        }
+      }
+
+      nav {
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        animation: slideDown 1s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      nav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+        transform: scale(1.1);
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(51, 51, 51, 0.8);
+        color: #ccc;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+    </style>
+    <link rel="stylesheet" href="/static/css/theme.css" />
+  </head>
+  <body>
+    <header>
+      <h1>中药发明创造里程碑事件</h1>
+      <nav>
+        <a href="{% url 'index' %}">首页</a>
+        <a href="/user/yiyinyishan">一饮一膳</a>
+        <a href="/user/lishi">汤汤历史</a>
+        <a href="/user/diangu">悠悠典故</a>
+        <a href="/user/fengbei">峨峨丰碑</a>
+        <a href="/user/yizhu">皇皇医著</a>
+        <a href="/user/qunxing">耀耀群星</a>
+        <a href="/user/yangsheng">节气养生</a>
+        <a href="{% url 'predict:predictindex' %}">识别</a>
+        <a href="{% url 'chat:chatindex' %}">对话</a>
+      </nav>
+    </header>
+    <div class="content" id="home">
+      <h2>中药发明创造里程碑事件</h2>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>中药汤液的创制</h3>
+            <p>
+              汤液即汤剂，是中医运用方药的主要剂型之一。相传汤液为商汤的宰相伊尹创制发明，伊尹原为汤王之厨，精通烹调，后被起用为宰相，《史记·殷本纪》有“伊尹以滋味说汤”的记载。《资治通鉴》称伊尹“闵生民疾苦，作汤液本草，明寒热温凉之性，酸苦辛甘咸淡之味，轻清浊重阴阳升降，走十二经络表里之宜。”汤液就是将各种药物加水煎煮而成，其方法与烹调饮食的经验以提高配制汤液的方法是很有可能的。事实上，汤液的真正创制显然非某一人或某一时期之功，当为人类有了用火又熟练制陶的基础之后，经过千百年生活实践，从采药与烹调中长期积累的结果，考古发现的陶釜和药用植物种仁可以佐证这一观点。汤液的创制也标志着方剂的诞生，人们吃药由“㕮咀”的方法过渡到煮食或去滓喝汤，汤液因其服用之便，用药之灵活，对医学的发展起到了极大的促进作用。
+            </p>
+            <img src="/static/images/yiyinyishan1.png" alt="麻黄" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>预防疾病的提出</h3>
+            <p>
+              “预防”一词最早见于《周易·下经》，“君子以思患而豫防之”，豫通预。春秋时期，知识界已普遍形成防范于未然的思想，如《管子》说：“惟有道者，能避患于未形，敌祸不萌。”这种避祸防患的观念影响到医学界，被引申、发展成为预防疾病的思想，如《国语·楚语下》说：“夫谁无疾告，能者早除之。”《内经·四气调神大论》更明确地指出：“是故圣人不治已病治未病，不治已乱治未乱，此之谓也。夫病已成而后药之，乱已成而后治之，譬犹渴而穿井，斗而铸锥，不亦晚平？”
+              在《内经》提出“治未病”预防理论的同时，人们在具体的预防措施和办法方面也进行了有益的探索。由于历史的局限，古人认为疫是由疫鬼作崇所致，出于敬摄、恐惧的心理，人们在腊月举行一种驱除疫鬼的仪式——“大傩”。虽然“大傩”采用的形式是迷信的。但是其中却蕴藏着早期预防传染病的思想。《山海经》所载药物中，防蛊的有8种，防疫的有4种，还有预防其他疾病的20多种。在发现疾病与季节有关之后，人们逐渐总结出一些季节性预防措施和方法，古人还试用冰块来调节气温，达到“疠疾不降”（《左传》昭公四年）的目的。
+            </p>
+            <img src="/static/images/yiyinyishan2.jpg" alt="神农尝百草" />
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>《黄帝内经》问世</h3>
+            <p>
+              战国时期（公元前475年－公元前221年），现存最早中医学理论著作《黄帝内经》基本完成，秦汉有所补充，非一时一人所撰，其通行本由《素问》与《灵枢》各81篇论文组成，全面总结了秦汉以前的医学成就，系统论述了人体生理、解剖、识病、诊疗、药方、针灸、养生等，包括整体观念、阴阳五行学说、藏象经络学说、病因病机、诊法治则、运气学说、治未病等理论，标志着中国医学由经验医学上升为理论医学的新阶段，是中医学的基石、中医理论体系的源泉、临床各科诊治的依据、中医学者必读的经典。它以生命为中心，宏观论述天、地、人之间相互联系，讨论生命规律，创建中医学理论体系和防治疾病的原则和技术，包含着医学、哲学、历史、语言、文字
+              、天文、地理、气象、历法、生物、心理、社会等多学科知识，是一部文化巨著、百科全书，对中医乃至中国文化产生极其深远的影响。曾被译成日、英、德、法等文字，对世界医学也产生不可忽视的影响。2011年5月，入选《世界记忆名录》。
+            </p>
+            <img src="/static/images/yiyinyishan3.jpg" alt="本草纲目" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>“中医科学化”与中医进修学校</h3>
+            <p>
+              “中医科学化”是第一届全国卫生会议的重要主题。当时受余云岫废止中医思想的影响，卫生行政部门将“中医科学化”落实为改造中医，要求中医上“中医进修”学校学习西医；并颁布《中医师暂行条例》等文件，要求中医通过西医科目考试方能执业。1953年全国92个大中城市只有14000多人合格，天津市参加考试的530多个中医只有55人通过。这些轻视中医、岐视中医的举措将导致中医西医化、边缘化，对中医的存续产生新的严重威胁。
+            </p>
+            <img src="/static/images/yiyinyishan1.png" alt="中药炮制" />
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>中央改进中医工作的若干措施</h3>
+            <p>
+              为了纠正1950年代初中医工作出现的错误，1954年11月26日中央批转《中央文委党组关于改进中医工作问题给中央的报告》，采取了保护发展中医的若干措施，如在西医院设立中医机构，吸收中医参加医院工作；建立专门的中医研究机构，从事中医的科学整理和研究；调整课程设置，改善中医进修教育；提倡中医带徒弟，创办中医学院；开办离职和在职西医学习中医研究班，在医学院校增设中医课程，号召广大西医学习中医等。这些措施在之后的工作中基本得到落实。
+            </p>
+            <img src="/static/images/diangu1.jpg" alt="本草纲目" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>首届“西学中”班</h3>
+            <p>
+              1955年12月19日卫生部中医研究院（现名中国中医科学院）成立的同时，全国第一届西医离职学习中医研究班开班，全国各地选送的高等西医药学校毕业生和具有临床经验的西医师84名学员前来报到。学员们在两年半的时间里,学习了16门业务课程,参加了临床实习,取得了可喜的成绩,于1958年7月毕业。同年10月11日，毛泽东主席对卫生部党组《关于西医学中医离职班情况成绩和经验给党中央的报告》作了重要批示，指出：“今后要在全国范围内举办西医学习中医的学习班，这是一件大事，不可等闲视之。"
+            </p>
+            <img src="/static/images/diangu2.jpg" alt="中药炮制" />
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>西医学习中医</h3>
+            <p>
+              1956年8月24日，毛泽东主席在同音乐工作者谈话时指出：“要以西方的近代科学来研究中国的传统医学的规律，发展中国的新医学。”[
+              毛泽东：《毛泽东文集》第7卷，北京：人民出版社，1999年，第81页。]还指出：“把中医中药知识和西医西药知识结合起来，创造中国统一的新医学”。他提出团结中西医，号召西医学习中医。1959年姜春华提出“辨病与辨证相结合”，即西医辨病与中医辨证相结合
+            </p>
+            <img src="/static/images/diangu3.jpg" alt="本草纲目" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>石家庄、北京“乙脑”成功救治</h3>
+            <p>
+              1954年石家庄“乙脑”暴发，西医束手。中医郭可明辨治“乙脑”，疗效显著，在中医研究院成立会上受到表彰和奖励，后来受到毛泽东主席的接见。1956年北京又出现“乙脑”，直接采用石家庄经验，白虎汤为主，但疗效不显。蒲辅周详加诊察，辨证论治，认为：石家庄的偏热而北京的偏湿，改用宣解湿热和芳香透窍药，疗效卓著。
+            </p>
+            <img src="/static/images/diangu4.jpg" alt="中药炮制" />
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>中医高等院校教材编写</h3>
+            <p>
+              新中国初期，中医院校的教学大纲、教材延续民国时期民办中医院校教育，以中医原著为主要教材。为了改变这一状况，卫生部于1958年7月、1959年4月先后在南京、成都召开座谈会，讨论、编写全国中医学院统一教材；于1960年，召集北京、上海、广州、成都、南京等5所中医学院，审定了中医基础、临床各科共17门教材，并于1962年出版（一版）。“五老上书”之后，卫生部组织修订教材，在一版基础上增加《金匮要略讲义》等教材共达到18部，1963年出版（二版）。同时大幅增加中医理论、中医经典及传统文化课的课时。二版教材奠定了中医高等院校统编教材的基础，对中医教育产生重大而深远的影响。
+            </p>
+            <img src="/static/images/diangu1.jpg" alt="本草纲目" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>中西医结合取得系列成果</h3>
+            <p>
+              20世纪50-80年代，中西医结合研究在基础、临床、药物等方面陆续开展，中西医结合治疗急腹症、骨折、烧伤，中西医结合研究心血管病、中医阴阳学说、肾本质和肾阳虚证本质、寒热证本质和脾本质、针灸经络、针刺麻醉及其原理、血瘀证与活血化瘀等，不仅采用现代医药方法还运用现代科技手段，取得了一系列成果。
+            </p>
+            <img src="/static/images/history1.png" alt="中药炮制" />
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>中西医结合治疗骨折</h3>
+            <p>
+              1957年尚天裕开始学习中医及其正骨术，不断探索，提出“动静结合，筋骨并重，内外兼治，医患配合”的骨折治疗新原则，形成一套以小夹板局部固定为特点、以手法整复和患者主动功能锻炼为主要内容的中西医结合治疗骨折的新疗法，打破西医长期以来“广泛固定，完全休息”的传统观念，显示出骨折愈合快、功能恢复好、医疗费用省、患者痛苦小等优点，被我国医学院校广泛采用，并确立了国际骨科学中国流派——中国骨伤学（CO）。1966年《中西医结合治疗骨折》出版，之后有德、英、日多种译本。1970年周恩来总理称赞：小夹板外固定治疗骨折，是辩证法，说出了真理，两个积极性都要发挥。
+            </p>
+            <img src="/static/images/history1.png" alt="本草纲目" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>针刺麻醉镇痛成功</h3>
+            <p>
+              1958年8月，上海市第一人民医院针刺麻醉扁桃体摘除术成功。1971年7月18日新华社向全世界发布针刺麻醉成功的消息，再次掀起针刺麻醉的热潮，吸引全球的目光，为中医针灸的国内外传播产生重大的影响。针对缺点，提出“针刺辅助麻醉”“针药复合麻醉”，使之更科学合理。1984年卫生部提出针刺麻醉适用于拔牙、甲状腺、前颅窝颅脑、肺叶切除、颈椎前路、剖腹产、腹式输卵管结扎、腹式子宫切除等8种手术。同时，开展的针刺麻醉镇痛机理研究不断深入，为中医针灸走出国门，服务全人类打下坚实的基础。
+            </p>
+            <img src="/static/images/history1.png" alt="中药炮制" />
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>针灸传美掀起全球“针灸热”</h3>
+            <p>
+              1971年夏，美国总统尼克松访华之前，《纽约时报》副社长詹姆斯·赖斯顿在华采访期间突发急性阑尾炎，在北京协和医院手术后腹部胀痛，经针刺右肘部、双膝下三处，“雪茄样”艾卷灸腹部，症状明显减轻。他即发报道《现在，让我告诉你们我在北京的手术》（7月26日《纽约时报》头版），讲述了亲身体验到中国针灸神奇的经历，引发多方关注。次年春，尼克松访华团成员现场观看了北京医科大学第三医院针刺麻醉肺叶切除术的全过程。中国针灸再次引起美国乃至西方的注目，在世界范围内迅速掀起一股“针灸热”，也掀开了中医药向世界传播新的一页。
+            </p>
+            <img src="/static/images/history1.png" alt="本草纲目" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>屠呦呦发现青蒿素</h3>
+            <p>
+              为完成紧急援外任务，我国举全国之力，1967年5月23日启动了防治疟疾药物研究项目。先后有七个省市60多个单位500多人参与，至1968年底筛选的化合物和包括青蒿在内的中草药达10000多种，未果。1969年1月，卫生部中医研究院屠呦呦加入研发。她查阅了历代医著，筛选出640个方药，编成《抗疟方药集》，包括东晋葛洪《肘后备急方》“青蒿一握，以水二升渍，绞取汁，尽服之”，从中得到启发，首次聚焦青蒿，改用低温乙醚提取，终于在1971年10月4日获得乙醚中性提取物；次年，首次用于临床，全部有效；1972年11月8日，首次获得具有抗疟活性的单一化合物“青蒿素”，救治了亿万病患。
+            </p>
+            <img src="/static/images/history1.png" alt="中药炮制" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>&copy; 中药发明创造里程碑事件展示</footer>
+  </body>
+</html>

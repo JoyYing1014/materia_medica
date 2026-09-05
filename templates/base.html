@@ -1,0 +1,67 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %} 中药知多少{% endblock %}</title>
+    <meta name="keywords" content="中药知多少" />
+    <meta name="description" content="中药" />
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+    <!--[if lt IE 9]>
+      <script src="{% static 'js/modernizr.js' %}"></script>
+    <![endif]-->
+    <script src="{% static 'js/scrollReveal.js' %}"></script>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    {% block mycss %} {% endblock %}
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="{% url 'index' %}" aria-label="中药知多少首页">
+          <span class="brand__seal">本</span>
+          <span class="brand__text">中药知多少<small>BENCAO KNOWLEDGE</small></span>
+        </a>
+      <nav class="topnav" data-scroll-reveal="enter bottom over 1s after 1s">
+        <a href="{% url 'index' %}"
+          ><span>首页</span><span class="en">Home</span></a
+        ><a href="{% url 'case_study' %}"
+          ><span>产品方案</span><span class="en">Product</span></a
+        ><a href="/user/yiyinyishan"
+          ><span>一饮一膳</span><span class="en">Food</span></a
+        ><a href="/user/lishi"
+          ><span>汤汤历史</span><span class="en">history</span></a
+        ><a href="/user/diangu"
+          ><span>悠悠典故</span><span class="en">history</span></a
+        ><a href="/user/fengbei"
+          ><span>峨峨丰碑</span><span class="en">Achievement</span></a
+        ><a href="/user/yizhu"
+          ><span>皇皇医著</span><span class="en">Book</span></a
+        ><a href="/user/qunxing"
+          ><span>耀耀群星</span><span class="en">stars</span></a
+        ><a href="/user/yangsheng"
+          ><span>节气养生</span><span class="en">Season</span></a
+        ><a href="{% url 'predict:predictindex' %}"
+          ><span>识别</span><span class="en">Predict</span></a
+        ><a href="{% url 'chat:chatindex' %}"
+          ><span>对话</span><span class="en">Chat</span></a
+        >
+      </nav>
+      </div>
+    </header>
+
+    <article>
+      <div class="container">{% block content %} {% endblock %}</div>
+    </article>
+
+    <script>
+      if (!/msie [6|7|8|9]/i.test(navigator.userAgent)) {
+        (function () {
+          window.scrollReveal = new scrollReveal({ reset: true });
+        })();
+      }
+    </script>
+    {# js #} {% block myjs %} {% endblock %}
+  </body>
+</html>

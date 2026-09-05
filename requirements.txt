@@ -1,0 +1,15 @@
+# Web application runtime
+Django>=4.2,<5.0
+djangorestframework>=3.14,<4.0
+
+# Image recognition (CPU-only wheels for Windows)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.5.1
+torchvision==0.20.1
+Pillow>=10.0
+
+# Knowledge-graph question answering
+transformers>=4.44,<5.0
+pandas>=2.0
+pyahocorasick>=2.1
+py2neo==2021.2.4

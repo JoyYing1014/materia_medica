@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>中药知识问答 · 中药知多少</title>
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
+  </head>
+  <body class="chat-page">
+    {% csrf_token %}
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="{% url 'index' %}" aria-label="中药知多少首页">
+          <span class="brand__seal">本</span>
+          <span class="brand__text">中药知多少<small>BENCAO KNOWLEDGE</small></span>
+        </a>
+        <nav class="topnav" aria-label="主导航">
+          <a href="{% url 'index' %}">首页</a>
+          <a href="/user/yiyinyishan">一饮一膳</a>
+          <a href="/user/lishi">汤汤历史</a>
+          <a href="/user/diangu">悠悠典故</a>
+          <a href="/user/fengbei">峨峨丰碑</a>
+          <a href="/user/yizhu">皇皇医著</a>
+          <a href="/user/qunxing">耀耀群星</a>
+          <a href="/user/yangsheng">节气养生</a>
+          <a href="{% url 'predict:predictindex' %}">识别</a>
+          <a href="{% url 'chat:chatindex' %}" aria-current="page">对话</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="chat-page__main">
+      <section class="chat-panel" aria-labelledby="chat-title">
+        <div class="chat-panel__heading">
+          <span class="chat-panel__seal">问</span>
+          <div>
+            <p class="chat-panel__eyebrow">BENCAO Q&amp;A</p>
+            <h1 id="chat-title">中药知识问答</h1>
+            <p class="chat-panel__description">可询问药材的别名、气味、用法，或与症状相关的知识。</p>
+          </div>
+        </div>
+
+        <div id="chat" class="chat-messages" aria-live="polite">
+          <div class="robot"><div class="item">你好，我是本草小助手。请输入你想了解的中药问题。</div></div>
+        </div>
+
+        <div class="chat-composer">
+          <label class="sr-only" for="info">输入问题</label>
+          <input type="text" id="info" maxlength="200" placeholder="例如：人参有什么别名？" autocomplete="off" />
+          <button type="button" id="send">发送</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>&copy; 中药知多少</footer>
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/nt.js' %}"></script>
+  </body>
+</html>

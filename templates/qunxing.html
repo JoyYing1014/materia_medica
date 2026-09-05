@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>中国历代名医展示</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Arial", sans-serif;
+            background: linear-gradient(to bottom, #1e1e1e, #121212);
+            color: #ffffff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #4a90e2,
+                0 0 40px #4a90e2, 0 0 50px #4a90e2, 0 0 60px #4a90e2,
+                0 0 70px #4a90e2;
+            }
+            to {
+                text-shadow: 0 0 20px #ffffff, 0 0 30px #9013fe, 0 0 40px #9013fe,
+                0 0 50px #9013fe, 0 0 60px #9013fe, 0 0 70px #9013fe,
+                0 0 80px #9013fe;
+            }
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 0 10px;
+            display: flex;
+            justify-content: center;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: rgba(51, 51, 51, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            backdrop-filter: blur(15px);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4a90e2;
+            text-shadow: 0 0 10px #4a90e2;
+        }
+
+        .doctor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .doctor-item {
+            background: rgba(68, 68, 68, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+
+        .doctor-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+        }
+
+        .doctor-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .doctor-item h3 {
+            margin: 0 0 10px;
+            color: #4a90e2;
+            text-align:center;
+        }
+
+        .doctor-item p {
+            color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(51, 51, 51, 0.8);
+            color: #ccc;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+    <link rel="stylesheet" href="/static/css/theme.css" />
+</head>
+<body>
+<header>
+    <h1>中国历代名医展示</h1>
+    <nav>
+        <a href="{% url 'index' %}">首页</a>
+        <a href="/user/yiyinyishan">一饮一膳</a>
+        <a href="/user/lishi">汤汤历史</a>
+        <a href="/user/diangu">悠悠典故</a>
+        <a href="/user/fengbei">峨峨丰碑</a>
+        <a href="/user/yizhu">皇皇医著</a>
+        <a href="/user/qunxing">耀耀群星</a>
+        <a href="/user/yangsheng">节气养生</a>
+        <a href="{% url 'predict:predictindex' %}">识别</a>
+        <a href="{% url 'chat:chatindex' %}">对话</a>
+    </nav>
+</header>
+<div class="content" id="home">
+    <h2>中国历代名医</h2>
+    <div class="doctor">
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E5%8D%8E%E4%BD%97/9387">
+                <img src="/static/images/qunxing1.jpg" alt="华佗"/></a>
+            <h3>华佗</h3>
+            <p>
+                东汉末年著名的医学家，他的外科手术技术在当时达到很高水平，被誉为“外科圣手”。
+            </p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E6%9D%8E%E6%97%B6%E7%8F%8D/80855">
+            <img src="/static/images/qunxing2.jpg" alt="李时珍" /></a>
+            <h3>李时珍</h3>
+            <p>
+                明代著名药物学家，编撰了《本草纲目》，对中药学的整理和总结具有重要贡献。
+            </p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E5%BC%A0%E4%BB%B2%E6%99%AF/66566">
+            <img src="/static/images/qunxing3.jpg" alt="张仲景"/></a>
+            <h3>张仲景</h3>
+            <p>
+                东汉末年著名医学家，被后人称为“医圣”，他的著作《伤寒杂病论》是中医学的重要经典。
+            </p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E5%AD%99%E6%80%9D%E9%82%88/430161">
+                <img src="/static/images/qunxing4.jpg" alt="孙思邈" /></a>
+            <h3>孙思邈</h3>
+            <p>
+                唐代著名医学家，被称为“药王”，著有《千金方》和《千金翼方》，对中医药学有重要贡献。
+            </p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E6%89%81%E9%B9%8A/233312">
+                <img src="/static/images/qunxing5.jpg" alt="扁鹊"/></a>
+            <h3>扁鹊</h3>
+            <p>战国时期著名医学家，被誉为“神医”，擅长诊脉，被称为“脉学之宗”。</p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E8%91%9B%E6%B4%AA/8319507">
+                <img src="/static/images/qunxing6.jpg" alt="葛洪"/></a>
+            <h3>葛洪</h3>
+            <p>
+                东晋时期著名道士和医学家，著有《肘后备急方》，对急救医学有重要贡献。
+            </p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E7%8E%8B%E6%B8%85%E4%BB%BB?fromModule=lemma_search-box">
+                <img src="/static/images/qunxing7.jpg" alt="王清任"/></a>
+            <h3>王清任</h3>
+            <p>清代著名医学家，著有《医林改错》，对中医解剖学有重要研究。</p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E9%92%B1%E4%B9%99/430432">
+                <img src="/static/images/qunxing8.jpg" alt="钱乙"/></a>
+            <h3>钱乙</h3>
+            <p>宋代著名儿科医生，被称为“儿科之圣”，著有《小儿药证直诀》。</p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E5%8F%B6%E5%A4%A9%E5%A3%AB/429763">
+                <img src="/static/images/qunxing9.jpg" alt="叶天士"/></a>
+            <h3>叶天士</h3>
+            <p>清代著名医学家，温病学派代表人物，著有《温热论》。</p>
+        </div>
+        <div class="doctor-item">
+            <a href="https://baike.baidu.com/item/%E9%99%88%E8%87%AA%E6%98%8E/12867?fromModule=lemma_search-box">
+                <img src="/static/images/qunxing10.jpg" alt="陈自明"/></a>
+            <h3>陈自明</h3>
+            <p>
+                南宋著名妇科医生，著有《妇人大全良方》，对中医妇科学有重要贡献。
+            </p>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>&copy; 中国历代名医展示</p>
+</footer>
+</body>
+</html>

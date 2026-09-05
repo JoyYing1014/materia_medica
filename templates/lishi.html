@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中药历史展示</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 2px;
+      }
+
+      nav {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      nav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 35px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .content {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 20px auto;
+        background: #333;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+      }
+
+      .content h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #4a90e2;
+        text-shadow: 0 0 10px #4a90e2;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: #4a90e2;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+      }
+
+      .timeline-item {
+        padding: 10px 30px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -12.5px;
+        background-color: #9013fe;
+        border: 4px solid #4a90e2;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .left {
+        left: 0;
+      }
+
+      .right {
+        left: 50%;
+      }
+
+      .left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid white;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent white;
+      }
+
+      .right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background-color: white;
+        position: relative;
+        border-radius: 6px;
+        color: black;
+        max-width: 500px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .timeline-content h3 {
+        margin: 0;
+        font-size: 1.5em;
+        color: #4a90e2;
+      }
+
+      .timeline-content p {
+        margin: 10px 0 0;
+        color: #555;
+      }
+
+      .timeline-content img {
+        width: 100%;
+        border-radius: 6px;
+        margin-top: 10px;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item::before {
+          left: 60px;
+          border: medium solid white;
+          border-width: 10px 10px 10px 0;
+          border-color: transparent white transparent transparent;
+        }
+
+        .left::after,
+        .right::after {
+          left: 15px;
+        }
+
+        .right {
+          left: 0%;
+        }
+      }
+      footer {
+        text-align: center;
+        padding: 10px 20px;
+        background: #4a90e2;
+        color: #fff;
+      }
+
+      @media screen and (max-width: 768px) {
+        .gallery-item {
+          width: calc(50% - 20px); /* Adjust for smaller screens */
+          margin: 10px auto; /* Center items */
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .gallery-item {
+          width: 100%; /* Full width on very small screens */
+          margin: 10px 0;
+        }
+      }
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(to bottom, #1e1e1e, #121212);
+        color: #ffffff;
+      }
+
+      header {
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 2px;
+        animation: glow 1.5s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #4a90e2,
+            0 0 40px #4a90e2, 0 0 50px #4a90e2, 0 0 60px #4a90e2,
+            0 0 70px #4a90e2;
+        }
+        to {
+          text-shadow: 0 0 20px #ffffff, 0 0 30px #9013fe, 0 0 40px #9013fe,
+            0 0 50px #9013fe, 0 0 60px #9013fe, 0 0 70px #9013fe,
+            0 0 80px #9013fe;
+        }
+      }
+
+      nav {
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        animation: slideDown 1s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      nav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+        transform: scale(1.1);
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(51, 51, 51, 0.8);
+        color: #ccc;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+    </style>
+    <link rel="stylesheet" href="/static/css/theme.css" />
+  </head>
+  <body>
+    <header>
+      <h1>中药历史展示</h1>
+      <nav>
+        <a href="{% url 'index' %}">首页</a>
+        <a href="/user/yiyinyishan">一饮一膳</a>
+        <a href="/user/lishi">汤汤历史</a>
+        <a href="/user/diangu">悠悠典故</a>
+        <a href="/user/fengbei">峨峨丰碑</a>
+        <a href="/user/yizhu">皇皇医著</a>
+        <a href="/user/qunxing">耀耀群星</a>
+        <a href="/user/yangsheng">节气养生</a>
+        <a href="{% url 'predict:predictindex' %}">识别</a>
+        <a href="{% url 'chat:chatindex' %}">对话</a>
+      </nav>
+    </header>
+    <div class="content">
+      <h2>中药的发展历程</h2>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>远古时代</h3>
+            <p>
+              50—60万年前，北京猿人。公元前4000年，龙山文化。公元前1000年，青铜文化。周代（公元前1046年——前256年）初，《周易》问世。道家创始人老子（约公元前571年~前471年）《道德经》，充满辩证法。公元前500年，出现儒、道、阴阳、杂家。庄子（约公元前369年~前275年）主张“天人合一”。
+              50—60万年前，传说“钻燧取火”，熨法与灸法萌芽。40万年前，传说“伏羲制九针”。5—7万年前，传说“神农尝百草”。公元前4000年，酒发明。公元前1700年，传说“伊尹制汤液”。公元前1330年，甲骨文记载医药知识。公元前1000年，《尚书·说命》：“若药弗瞑眩，厥疾弗瘳”。公元前1046年—前771年，西周设食、疾、疡、兽医。公元前541年，医和提出“六气致病说”。公元前500年，扁鹊秦越人发明脉诊，明言“信巫不信医”等“六不治”。
+            </p>
+            <img src="/static/images/history1.png" alt="远古时代的草药" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>汉代</h3>
+            <p>
+              公元前300年，《山海经》载120多种药物。公元前221年，铁器普遍使用。公元前138年、公元前119年，张骞两次出使西域，有药物交流。
+              约公元前300年，《五十二病方》问世。约公元前250年—前5年，《黄帝内经》基本构建了整体观的中医理论体系。公元前198年，淳于意创用“诊籍”。西汉（公元前202年—公元24年），《难经》问世，诊脉独取寸口，记载脏器大小。
+            </p>
+            <img src="/static/images/history2.png" alt="汉代的中药书籍" />
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>明清</h3>
+            <p>
+              1607年——1610年，徐光启撰《农政全书》。1637年，宋应星《天工开物》刊行。
+              1602—1607年，王肯堂撰《证治准绳》。1623年，陈实功著《外科正宗》。1624年，张介宾著《景岳全书》。1642年，吴又可《温疫论》提出“疠气学说”。1669年，同仁堂创建。
+              1634年，《泰西人身说概》译入。
+              1726年，《古今图书集成》刊行。1772—1781年，官修《四库全书》，其中医书近百种。
+              1742年，《医宗金鉴》刊印。1746年，叶天士著《温热论》，创温热病卫气营血辨证。1765年，赵学敏撰《本草纲目拾遗》。1799年，吴鞠通著《温病条辨》，创温病三焦辨证。1799年，俞根初《通俗伤寒论》倡寒温融合。
+            </p>
+            <img src="/static/images/history3.png" alt="唐代的药典" />
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>现代</h3>
+            <p>
+              2003年，SARS爆发；世界中医药学会联合会成立；《中华人民共和国中医药条例》颁布。卫生部发布《非典型性肺炎中医药防治技术方案（试行）》；“血瘀证与活血化瘀研究”获国家科技进步一等奖。
+              2009年，《国务院关于扶持和促进中医药事业发展的若干意见》发布。国际标准化组织中医药技术委员会（ISO/TC249）成立；《国家基本药物目录》纳入中成药与中药饮片；《中医药治疗HIV/AIDS疗效评价指标体系》颁布；评选表彰首届国医大师。
+              2010年，中医针灸列为联合国教科文组织人类非物质文化遗产。
+              2011年，《黄帝内经》《本草纲目》列入联合国教科文组织世界记忆名录。
+              2014年，ISO《一次性使用无菌针灸针》国际标准发布；评选表彰第二届国医大师。
+              2015年，屠呦呦获诺贝尔生理学或医学奖。
+            </p>
+            <img src="/static/images/history4.png" alt="现代中药" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>&copy; 中药历史展示</footer>
+    <script>
+      // 这里可以添加一些交互效果
+      document.addEventListener("DOMContentLoaded", function () {
+        // 例如：简单的淡入效果
+        const items = document.querySelectorAll(".timeline-item");
+        items.forEach((item) => {
+          item.style.opacity = 0;
+          item.style.transition = "opacity 0.6s ease-in-out";
+        });
+
+        function fadeInElements() {
+          items.forEach((item) => {
+            const rect = item.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+              item.style.opacity = 1;
+            }
+          });
+        }
+
+        window.addEventListener("scroll", fadeInElements);
+        fadeInElements();
+      });
+    </script>
+  </body>
+</html>

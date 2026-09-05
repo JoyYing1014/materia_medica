@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片上传与识别</title>
+    <style>
+      /* CSS 样式部分 */
+      /* 你现有的 CSS 样式 */
+      header {
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+      }
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(to bottom, #4a90e2, #9013fe);
+        color: #ffffff;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 2px;
+      }
+      footer {
+        text-align: center;
+        padding: 10px 20px;
+        background: #4a90e2;
+        color: #fff;
+      }
+
+      @media screen and (max-width: 768px) {
+        .gallery-item {
+          width: calc(50% - 20px); /* Adjust for smaller screens */
+          margin: 10px auto; /* Center items */
+        }
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(51, 51, 51, 0.8);
+        color: #ccc;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+      @media screen and (max-width: 480px) {
+        .gallery-item {
+          width: 100%; /* Full width on very small screens */
+          margin: 10px 0;
+        }
+      }
+      nav {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      nav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 35px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      header {
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 2px;
+        animation: glow 1.5s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #4a90e2,
+            0 0 40px #4a90e2, 0 0 50px #4a90e2, 0 0 60px #4a90e2,
+            0 0 70px #4a90e2;
+        }
+        to {
+          text-shadow: 0 0 20px #ffffff, 0 0 30px #9013fe, 0 0 40px #9013fe,
+            0 0 50px #9013fe, 0 0 60px #9013fe, 0 0 70px #9013fe,
+            0 0 80px #9013fe;
+        }
+      }
+
+      nav {
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        animation: slideDown 1s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      nav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+        transform: scale(1.1);
+      }
+      #home {
+        background-color: rgba(50, 50, 50, 0.8);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+    <link rel="stylesheet" href="/static/css/theme.css" />
+  </head>
+  <body>
+    <header>
+      <h1>图片上传与识别</h1>
+      <nav>
+        <a href="{% url 'index' %}">首页</a>
+        <a href="/user/yiyinyishan">一饮一膳</a>
+        <a href="/user/lishi">汤汤历史</a>
+        <a href="/user/diangu">悠悠典故</a>
+        <a href="/user/fengbei">峨峨丰碑</a>
+        <a href="/user/yizhu">皇皇医著</a>
+        <a href="/user/qunxing">耀耀群星</a>
+        <a href="/user/yangsheng">节气养生</a>
+        <a href="{% url 'predict:predictindex' %}">识别</a>
+        <a href="{% url 'chat:chatindex' %}">对话</a>
+      </nav>
+    </header>
+    <div class="form-group" id="home">
+      <!-- <label for="pic">上传图片</label> -->
+      <!-- 添加id属性以便JavaScript使用 -->
+      <!-- <input
+        type="file"
+        id="pic"
+        name="pic"
+        accept="image/*"
+        onchange="previewImage(event)"
+      /> -->
+      <!-- 添加一个用于显示预览图片的元素 -->
+
+      <form
+        method="post"
+        enctype="multipart/form-data"
+        onchange="previewImage(event)"
+      >
+        {% csrf_token %} {{ form.as_p }}
+        <input type="submit" value="Submit" />
+        <!-- <input
+        type="file"
+        id="pic"
+        name="pic"
+        accept="image/*"
+        onchange="previewImage(event)"
+      /> -->
+        <img
+          id="preview"
+          src="#"
+          alt="预览图片"
+          style="display: none; max-width: 30%"
+        />
+      </form>
+    </div>
+    <footer>
+      <p>&copy; 图片上传与识别</p>
+    </footer>
+    <!-- JavaScript 部分 -->
+    <script>
+      // JavaScript 代码部分
+      // 用于预览上传的图片
+      function previewImage(event) {
+        var input = event.target;
+        var preview = document.getElementById("preview");
+        // 如果有选择文件
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+          };
+          reader.readAsDataURL(input.files[0]);
+        } else {
+          preview.src = "#";
+          preview.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

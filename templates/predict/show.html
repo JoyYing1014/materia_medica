@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图像分类结果</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 2px;
+        animation: glow 1.5s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #4a90e2,
+            0 0 40px #4a90e2, 0 0 50px #4a90e2, 0 0 60px #4a90e2,
+            0 0 70px #4a90e2;
+        }
+        to {
+          text-shadow: 0 0 20px #ffffff, 0 0 30px #9013fe, 0 0 40px #9013fe,
+            0 0 50px #9013fe, 0 0 60px #9013fe, 0 0 70px #9013fe,
+            0 0 80px #9013fe;
+        }
+      }
+
+      nav {
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        animation: slideDown 1s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      nav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+        transform: scale(1.1);
+      }
+
+      .content {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 20px auto;
+        background: rgba(51, 51, 51, 0.8);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        backdrop-filter: blur(15px);
+        animation: fadeIn 1s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .content h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #4a90e2;
+        text-shadow: 0 0 10px #4a90e2;
+      }
+
+      .doctor {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .doctor-item {
+        background: rgba(68, 68, 68, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      }
+
+      .doctor-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+      }
+
+      .doctor-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+
+      .doctor-item h3 {
+        margin: 0 0 10px;
+        color: #4a90e2;
+      }
+
+      .doctor-item p {
+        color: #ccc;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(51, 51, 51, 0.8);
+        color: #ccc;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      main {
+        background: linear-gradient(to right, #4a90e2, #9013fe);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        margin-bottom: 60px; /* Ensure there's space at the bottom for the footer */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .result-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .result-container img {
+        margin-right: 20px;
+      }
+
+      .result-container .button {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #ffffff;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+      }
+
+      .result-container .button:hover {
+        background-color: #0056b3;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin: 5px 0;
+      }
+      .labels-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .label-item {
+        background-color: #ffffff;
+        color: #333;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+    <link rel="stylesheet" href="/static/css/theme.css" />
+  </head>
+  <body>
+    <header>
+      <h1>图像分类结果</h1>
+      <nav>
+        <a href="{% url 'index' %}">首页</a>
+        <a href="/user/yiyinyishan">一饮一膳</a>
+        <a href="/user/lishi">汤汤历史</a>
+        <a href="/user/diangu">悠悠典故</a>
+        <a href="/user/fengbei">峨峨丰碑</a>
+        <a href="/user/yizhu">皇皇医著</a>
+        <a href="/user/qunxing">耀耀群星</a>
+        <a href="/user/yangsheng">节气养生</a>
+        <a href="{% url 'predict:predictindex' %}">识别</a>
+        <a href="{% url 'chat:chatindex' %}">对话</a>
+      </nav>
+    </header>
+    <main>
+      <p>上传的图片是: {{ picture.photo.name }}</p>
+      <img src="{{ picture.photo.url }}" alt="上传的图片" />
+      <p>分类结果如下(标签和精确度):</p>
+      <div class="labels-container">
+        {% for i in label %}
+        <div class="label-item">{{ i }}</div>
+        {% endfor %}
+      </div>
+      <button
+        class="button"
+        onclick="window.location.href='{% url 'predict:predictindex' %}'"
+      >
+        再来一次?
+      </button>
+    </main>
+    <footer>
+      <p>&copy; 图片上传与识别</p>
+    </footer>
+  </body>
+</html>

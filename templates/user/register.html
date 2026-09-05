@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    用户注册
+{% endblock %}
+{# css样式部分 #}
+{% block mycss %}
+    <link href="{% static 'css/register.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet"/>
+{% endblock %}
+{# 内容部分 #}
+{% block content %}
+    <div class="main">
+        <div class="main-w31">
+            <h1 class="logo-w3">个人博客用户注册</h1>
+            <div class="w3layouts-main">
+                <h2><span>现在注册</span></h2>
+                <p>{{ msg }}{{ errors }}</p>
+                <form action="{% url 'user:register' %}" method="post"> {% csrf_token %}
+                    <input placeholder="用户名" name="username" type="text" required=""><br>
+                    <input placeholder="邮箱" name="email" type="email" required=""><br>
+                    <input placeholder="手机号码" name="mobile" type="text" required=""><br>
+                    <input placeholder="密码" name="password" type="password" id="password1" required=""><br>
+                    <input placeholder="确认密码" name="password" type="password" id="password2" required=""><br>
+                    <input type="submit" value="提交注册" name="login"><br>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{# js部分 #}
+{% block myjs %}
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <script>
+        {# 密码校验 #}
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass1 = document.getElementById("password1").value;
+            var pass2 = document.getElementById("password2").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("密码不匹配")
+            else
+                document.getElementById("password2").setCustomValidity("")
+        }
+    </script>
+{% endblock %}
