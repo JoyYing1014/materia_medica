@@ -1,0 +1,241 @@
+{% load static %}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="中药知多少：一个围绕图像分类、受限知识问答与中医药文化学习体验构建的产品 Case Study。">
+  <title>本草识知｜中药知多少产品方案</title>
+  <link rel="stylesheet" href="{% static 'css/case-study.css' %}">
+</head>
+<body class="cs-page">
+  <div class="cs-noise" aria-hidden="true"></div>
+
+  <header class="cs-nav">
+    <div class="cs-shell cs-nav__inner">
+      <a class="cs-brand" href="{% url 'case_study' %}" aria-label="本草识知产品方案首页">
+        <span class="cs-brand__seal">本</span>
+        <span>本草识知<small>BENCAO KNOWLEDGE</small></span>
+      </a>
+      <button class="cs-menu-button" type="button" aria-expanded="false" aria-controls="cs-nav-links">
+        <span class="cs-sr-only">打开导航</span><span></span><span></span><span></span>
+      </button>
+      <nav class="cs-nav__links" id="cs-nav-links" aria-label="页面导航">
+        <a href="#problem">问题</a>
+        <a href="#solution">方案</a>
+        <a href="#evaluation">评测</a>
+        <a href="#roadmap">路线图</a>
+        <a class="cs-nav__back" href="{% url 'index' %}">返回网站</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="cs-hero">
+      <div class="cs-shell cs-hero__grid">
+        <div class="cs-reveal">
+          <p class="cs-eyebrow"><span></span>PRODUCT CASE STUDY · 中药知多少</p>
+          <h1>让每一次<br>“这是什么药材？”<em>都有路可继续了解</em></h1>
+          <p class="cs-hero__desc">这是一个产品方案：将现有图像分类、受限范围问答与中医药文化内容组织为一条更清晰的学习路径，帮助初学者从一张图片开始走近一味本草。</p>
+          <div class="cs-hero__actions">
+            <a class="cs-button cs-button--primary" href="{% url 'predict:predictindex' %}">体验图片分类 <span aria-hidden="true">→</span></a>
+            <a class="cs-button cs-button--secondary" href="#solution">查看产品方案</a>
+          </div>
+          <p class="cs-hero__note">面向科普与学习，不提供诊断、处方或剂量建议。</p>
+        </div>
+
+        <aside class="cs-hero-card cs-reveal" aria-label="产品体验闭环">
+          <div class="cs-mini-label">P0 TARGET · THE LEARNING LOOP</div>
+          <div class="cs-loop">
+            <div class="cs-loop__item"><b>01</b><div><strong>拍照上传</strong><span>先判断图片是否足够清晰</span></div></div>
+            <div class="cs-loop__item"><b>02</b><div><strong>识别候选</strong><span>展示候选结果与不确定性</span></div></div>
+            <div class="cs-loop__item"><b>03</b><div><strong>阅读本草</strong><span>查看条目、来源与文化关联</span></div></div>
+            <div class="cs-loop__item"><b>04</b><div><strong>反馈纠错</strong><span>将真实反馈沉淀为下一轮改进</span></div></div>
+          </div>
+          <div class="cs-hero-card__footer"><span class="cs-pulse"></span>规划目标：从“给出标签”升级为“完成一次理解”</div>
+        </aside>
+      </div>
+
+      <div class="cs-shell cs-stats cs-reveal" aria-label="项目当前能力概览">
+        <div class="cs-stat"><strong>102</strong><span>当前图像分类类别标签</span></div>
+        <div class="cs-stat"><strong>5</strong><span>当前问答意图类别</span></div>
+        <div class="cs-stat"><strong>7</strong><span>现有中医药文化专题</span></div>
+        <div class="cs-stat"><strong>—</strong><span>准确率与安全评测基线待建立</span></div>
+      </div>
+    </section>
+
+    <section class="cs-section" id="problem">
+      <div class="cs-shell">
+        <div class="cs-section-head cs-reveal">
+          <div><p class="cs-section-no">01 · THE PROBLEM</p><h2>用户想认识一味药材，<br>却常常卡在第一步。</h2></div>
+          <p>现有中医药内容往往权威但分散；通用识图或问答虽然快捷，却难以说明答案从何而来。我们不把“识别”视为终点，而是把它设计成进入可信知识的入口。</p>
+        </div>
+
+        <div class="cs-grid cs-grid--three">
+          <article class="cs-card cs-pain-card cs-reveal">
+            <div class="cs-icon" aria-hidden="true">⌁</div>
+            <h3>看得见，却认不准</h3>
+            <p>相似药材、局部图片和光线问题都会让单一结果显得不可靠；用户不知道该不该相信，也不知道怎样拍得更好。</p>
+            <ul><li>候选不透明</li><li>缺少重拍指引</li><li>没有“无法判断”的出口</li></ul>
+            <b>设计回应：候选 + 置信提示 + 重新上传</b>
+          </article>
+          <article class="cs-card cs-pain-card cs-reveal">
+            <div class="cs-icon" aria-hidden="true">◇</div>
+            <h3>查得到，却难理解</h3>
+            <p>别名、来源、药用部位、典故与医著分布在不同页面，用户需要自己拼出“这味药和我刚才看到的内容有什么关系”。</p>
+            <ul><li>信息入口分散</li><li>缺乏关联路径</li><li>阅读后没有下一步</li></ul>
+            <b>设计回应：一张本草卡，串起知识关系</b>
+          </article>
+          <article class="cs-card cs-pain-card cs-reveal">
+            <div class="cs-icon" aria-hidden="true">◌</div>
+            <h3>问得方便，却缺少边界</h3>
+            <p>中药相关问题很容易从文化科普滑向治疗、处方和用药剂量。若不解释来源与边界，回答越流畅，误用风险反而越高。</p>
+            <ul><li>结论来源不清</li><li>科普与诊疗混淆</li><li>不确定性没有呈现</li></ul>
+            <b>设计回应：来源可见、风险拒答、人工核验</b>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--soft" id="solution">
+      <div class="cs-shell">
+        <div class="cs-section-head cs-reveal">
+          <div><p class="cs-section-no">02 · PRODUCT SOLUTION</p><h2>将一次识别，设计成<br>一条可继续探索的本草路径。</h2></div>
+          <p>首期不追求覆盖所有健康问题，而是服务一个具体任务：当用户遇到一味陌生药材时，帮助他从“看不懂”走到“知道它是什么、为什么这样判断、还能去哪里继续了解”。</p>
+        </div>
+
+        <div class="cs-journey cs-card cs-reveal" aria-label="用户学习流程">
+          <div class="cs-journey__line" aria-hidden="true"></div>
+          <div class="cs-journey__step"><i>1</i><b>上传图片</b><span>全景、局部或包装图片</span></div>
+          <div class="cs-journey__step"><i>2</i><b>查看候选</b><span>不强行给出唯一结论</span></div>
+          <div class="cs-journey__step"><i>3</i><b>阅读本草卡</b><span>名称、来源、文化与关联</span></div>
+          <div class="cs-journey__step"><i>4</i><b>追问与探索</b><span>沿知识图谱继续学习</span></div>
+          <div class="cs-journey__step"><i>5</i><b>提交反馈</b><span>纠错进入审核和评测闭环</span></div>
+        </div>
+
+        <div class="cs-grid cs-grid--four cs-features">
+          <article class="cs-card cs-feature cs-reveal"><span class="cs-tag">P0 · RECOGNITION</span><h3>拍照识本草</h3><p>用 Top 3 候选、图片质量提示和无法判断状态替代“看似确定的单一答案”。</p><span class="cs-status cs-status--now">已有识别基础</span></article>
+          <article class="cs-card cs-feature cs-reveal"><span class="cs-tag">P0 · KNOWLEDGE</span><h3>可信本草卡</h3><p>用统一词条承接来源、别名、药用部位、文化故事与相关内容。</p><span class="cs-status cs-status--next">首期补齐</span></article>
+          <article class="cs-card cs-feature cs-reveal"><span class="cs-tag">P1 · EXPLORE</span><h3>受限范围问答</h3><p>围绕预设词条关系组织追问，并逐步补齐可展示的来源和人工审核机制。</p><span class="cs-status cs-status--now">已有问答原型</span></article>
+          <article class="cs-card cs-feature cs-reveal"><span class="cs-tag">P1 · LEARN</span><h3>主题学习路线</h3><p>把医著、典故、养生与中药食材页面组织成可完成的展览和学习主题。</p><span class="cs-status cs-status--next">后续验证</span></article>
+        </div>
+
+        <div class="cs-split cs-reveal">
+          <div class="cs-card cs-split__card">
+            <p class="cs-mini-label">CURRENT FOUNDATION</p>
+            <h3>已有能力，不夸大已有能力</h3>
+            <dl>
+              <div><dt>图像分类演示</dt><dd>现有模型将上传图片映射为 102 个预设类别标签中的一个结果。</dd></div>
+              <div><dt>受限词条问答</dt><dd>本地模型与 Neo4j 服务配置就绪时，可回答受限范围内的问题。</dd></div>
+              <div><dt>文化内容</dt><dd>已有 7 个中医药文化专题，可作为后续学习路径的内容资产。</dd></div>
+            </dl>
+          </div>
+          <div class="cs-card cs-split__card cs-split__card--highlight">
+            <p class="cs-mini-label">P0 EXPERIENCE</p>
+            <h3>首期要补上的体验层</h3>
+            <dl>
+              <div><dt>可解释结果</dt><dd>候选、置信提示、图片要求和来源展示将比模型名称更靠前。</dd></div>
+              <div><dt>统一知识入口</dt><dd>让用户从识别结果直接抵达可核验、可继续探索的条目。</dd></div>
+              <div><dt>反馈闭环</dt><dd>将“识别对不对”和“回答有没有帮助”变成可审核的数据。</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section" id="trust">
+      <div class="cs-shell">
+        <div class="cs-section-head cs-reveal">
+          <div><p class="cs-section-no">03 · TRUST BY DESIGN</p><h2>可信不是一个标语，<br>而是每一步的产品约束。</h2></div>
+          <p>中医药数字化发展鼓励建设知识库、古籍与文物等文化服务平台；同时，任何涉及健康的 AI 产品都应明确用途、风险与责任边界。本方案首先服务于科普学习，而非医疗决策。</p>
+        </div>
+
+        <div class="cs-trust-grid">
+          <article class="cs-card cs-trust-card cs-reveal"><span class="cs-trust-card__number">01</span><h3>来源可见</h3><p>词条与问答应标示信息来源、更新时间和适用范围；无法追溯的内容不作为确定性结论呈现。</p></article>
+          <article class="cs-card cs-trust-card cs-reveal"><span class="cs-trust-card__number">02</span><h3>不确定性可见</h3><p>低质量图片、相似药材或知识库没有覆盖时，产品应明确提示，而不是用流畅语言掩盖未知。</p></article>
+          <article class="cs-card cs-trust-card cs-reveal"><span class="cs-trust-card__number">03</span><h3>边界可见</h3><p>诊断、处方、剂量与紧急健康问题不进入自动回答范围，并明确提示咨询合格专业人员。</p></article>
+        </div>
+
+        <aside class="cs-boundary cs-reveal">
+          <span class="cs-boundary__icon" aria-hidden="true">本</span>
+          <div><b>产品边界：帮助理解本草，不替代专业判断。</b><p>当前输出仅作学习参考，不能确认实物真伪、炮制状态或安全性；如果未来进入诊疗或健康管理场景，需要重新建设数据授权、专家审核、风险分级、留痕和合规流程。</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--soft" id="architecture">
+      <div class="cs-shell">
+        <div class="cs-section-head cs-reveal">
+          <div><p class="cs-section-no">04 · PRODUCT ARCHITECTURE</p><h2>技术服务于体验，<br>每一层都能被说明和验证。</h2></div>
+          <p>架构不以“用了多少模型”为卖点，而围绕用户是否能获得可用、可追溯、可改进的结果展开。当前已有模块成为底座，产品层则负责把它们组织成连续体验。</p>
+        </div>
+
+        <div class="cs-architecture cs-card cs-reveal">
+          <div class="cs-arch-layer"><b>体验层</b><div><span>图片分类</span><span>本草词条</span><span>受限问答</span><span>文化学习路线</span></div></div>
+          <div class="cs-arch-layer"><b>服务层</b><div><span>结果说明</span><span>来源与版本</span><span>安全策略</span><span>反馈审核</span></div></div>
+          <div class="cs-arch-layer"><b>知识与模型层</b><div><span>图像分类模型</span><span>问题意图分类</span><span>Neo4j 知识图谱</span><span>结构化内容库</span></div></div>
+          <div class="cs-arch-layer"><b>评测与运营层</b><div><span>固定测试集</span><span>坏案例归因</span><span>版本回归</span><span>人工抽检</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section" id="evaluation">
+      <div class="cs-shell">
+        <div class="cs-section-head cs-reveal">
+          <div><p class="cs-section-no">05 · EVAL &amp; ITERATION</p><h2>先建立真实基线，<br>再谈模型是否变好了。</h2></div>
+          <p>当前项目尚未形成可公开的统一评测数据，因此页面不展示虚构准确率。第一步是建立固定测试集与审核口径，让每一次修改都能回答：它解决了什么问题，又有没有带来新的风险？</p>
+        </div>
+
+        <div class="cs-eval-note cs-reveal"><b>Eval V1 原则</b><span>同一批测试样例、同一套判断标准、保留每次版本的输入、输出与人工结论。</span></div>
+        <div class="cs-card cs-eval-table-wrap cs-reveal">
+          <table class="cs-eval-table">
+            <thead><tr><th>评测层</th><th>先看什么</th><th>如何形成证据</th></tr></thead>
+            <tbody>
+              <tr><td><b>图像识别</b></td><td>Top-1、Top-3、低置信度拒答与图片质量提示</td><td>按类别、光线、角度和相似药材划分的留出图片集</td></tr>
+              <tr><td><b>知识问答</b></td><td>事实正确、引用完整、未知时不编造</td><td>带标准答案与来源的固定问题集，结合专家抽检</td></tr>
+              <tr><td><b>安全边界</b></td><td>诊断、处方、剂量、紧急问题是否正确转向</td><td>高风险问题集与人工复核清单</td></tr>
+              <tr><td><b>使用体验</b></td><td>识别完成、条目阅读、追问和反馈是否顺畅</td><td>漏斗数据、任务访谈与可用性测试</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cs-grid cs-grid--two cs-cases">
+          <article class="cs-card cs-case cs-reveal"><p class="cs-case__label">BAD CASE · IMAGE</p><h3>“图片像药材，但看不清关键特征”</h3><p>不能把模糊结果直接写成药名。应提示用户补拍整体、横切面、包装或标签，并保留“无法判断”的明确出口。</p><div><b>产品动作</b><span>质量引导 → Top 3 候选 → 重新上传 / 人工反馈</span></div></article>
+          <article class="cs-card cs-case cs-reveal"><p class="cs-case__label">BAD CASE · QUESTION</p><h3>“这个药材该怎么吃、吃多少？”</h3><p>这类问题跨越了科普边界。系统应解释其无法提供个体化用药方案，并引导用户向医师或药师咨询。</p><div><b>产品动作</b><span>识别风险意图 → 停止自动建议 → 清晰说明边界</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--soft" id="roadmap">
+      <div class="cs-shell">
+        <div class="cs-section-head cs-reveal">
+          <div><p class="cs-section-no">06 · ROADMAP</p><h2>从一个可用入口开始，<br>用证据决定下一步投入。</h2></div>
+          <p>路线图不是功能愿望清单。每一阶段都围绕一个待验证的假设、明确的成功指标和可以停止投入的条件展开。</p>
+        </div>
+
+        <div class="cs-roadmap">
+          <article class="cs-card cs-road-item cs-reveal"><strong>P0</strong><div><h3>建立可信识别闭环</h3><p><b>假设：</b>如果结果同时展示候选、来源和重拍指引，用户会更愿意继续核验，而非把单一识别结果当作结论。<br><b>验证：</b>识别完成率、重拍成功率、Top 3 采纳反馈、低置信度场景的误导率。</p></div></article>
+          <article class="cs-card cs-road-item cs-reveal"><strong>P1</strong><div><h3>验证知识路径是否真正帮助理解</h3><p><b>假设：</b>从识别结果进入统一词条和关联内容，能提高阅读完成与后续探索，而不仅是一次性查名称。<br><b>验证：</b>词条阅读率、关联内容点击率、主题学习完成率、用户访谈中的理解度。</p></div></article>
+          <article class="cs-card cs-road-item cs-reveal"><strong>P2</strong><div><h3>探索博物馆与教学共创场景</h3><p><b>假设：</b>数字展签、主题路线与课堂任务能让机构内容拥有更长的线上生命周期。<br><b>验证：</b>机构内容接入量、活动参与率、二维码回访率、教师/讲解员反馈。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-closing">
+      <div class="cs-shell">
+        <div class="cs-closing__card cs-reveal">
+          <p class="cs-section-no">CASE STUDY TAKEAWAY</p>
+          <h2>不是让 AI 替用户下结论，<br>而是让知识更容易被看见、理解与核验。</h2>
+          <p>中药知多少将从内容集合，逐步成为一个以图像分类为入口、以结构化学习内容为核心、以反馈评测为驱动的本草学习产品。</p>
+          <div class="cs-closing__actions"><a class="cs-button cs-button--primary" href="{% url 'predict:predictindex' %}">体验图片分类 <span aria-hidden="true">→</span></a><a class="cs-button cs-button--secondary" href="{% url 'chat:chatindex' %}">进入本草问答</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cs-footer">
+    <div class="cs-shell"><span>本草识知 · 中药知多少产品方案</span><span><a href="https://www.gov.cn/zhengce/zhengceku/202408/content_6968519.htm?dzb=true" target="_blank" rel="noopener noreferrer">数字中医药参考</a> · <a href="https://www.nhc.gov.cn/guihuaxxs/c100133/202511/d1a42ae835c743b9b3e83ac0253c3e9f.shtml" target="_blank" rel="noopener noreferrer">AI 医疗卫生参考</a></span></div>
+  </footer>
+  <script src="{% static 'js/case-study.js' %}"></script>
+</body>
+</html>
