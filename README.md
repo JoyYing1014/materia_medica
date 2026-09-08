@@ -96,19 +96,6 @@ python manage.py runserver
 
 启动后访问 <http://127.0.0.1:8000/>。
 
-## 主要页面
-
-| 地址                    | 说明           |
-| ----------------------- | -------------- |
-| `/`                     | 首页           |
-| `/case-study/`          | 产品方案页     |
-| `/predict/predictindex` | 图片上传与识别 |
-| `/chat/chatindex`       | 中药知识问答   |
-| `/user/register`        | 用户注册       |
-| `/user/login`           | 用户登录       |
-
-若缺少 `model.pth`，图片识别功能无法加载；若缺少 `good.bin`、BERT 本地模型或 Neo4j 配置，知识问答服务不可用。
-
 ## 项目结构
 
 ```text
