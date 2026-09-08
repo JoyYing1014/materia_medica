@@ -1,4 +1,4 @@
-# 本草识别（中药知多少） [在线查看「本草识知」产品 Case Study](https://joyying1014.github.io/materia_medica/)
+# 本草识别（中药知多少） [在线查看「本草识知」产品方案](https://joyying1014.github.io/materia_medica/)
 
 一个面向中医药文化学习的 Django Web 项目。项目将药材图片识别、受限范围的知识问答，以及中药历史、典籍、养生等内容放在同一学习入口中，帮助用户从一张图片或一个问题开始了解本草知识。
 
